@@ -1,15 +1,18 @@
 /**
  * Golden ratio.
  */
-export const serverLocation = process.env.REACT_APP_BASE_URL,
-  fileUrl = serverLocation + "/storage",
+export const location = 'http://127.0.0.1:8000',
+  fileUrl = location + "/storage",
   build = ""
 
 export const URL = {
 
+  loginUrl: `${location}/api/login`,
   // Authenticated
-  getAllAuthUsers: `${serverLocation}/api/v1/users`,
+  getAllAuthClients: `${location}/api/v1/clients`,
 
+  // Unauthenticated Users
+  getAllClients: `${location}/api/clients`,
 };
 
 export const headers = {
@@ -18,10 +21,6 @@ export const headers = {
   Accept: "application/json",
   "Client-Ip": localStorage.getItem("my_ip"),
 };
-
-
-export const REACT_APP_WEBSOCKETS_KEY = "local";
-export const REACT_APP_WEBSOCKETS_SERVER = "127.0.0.1";
 
 
 export const defaultPageSize = 10;

@@ -9,12 +9,12 @@ import {
 class Create extends Component {
 
     state = {
-        fname: "",
-        lname: "",
-        mname: "",
+        fname: null,
+        lname: null,
+        mname: null,
     };
 
-    handleCityChange = (e) => {
+    handleChange = (e) => {
         const target = e.target;
         const value = target.value;
         const name = target.name;
@@ -22,27 +22,74 @@ class Create extends Component {
     };
     
 
-    handleSubmit = (e, values) => {
-        console.log('here');
+    // handleSubmit = (e, values) => {
+    //     console.log('here');
+    //     e.preventDefault();
+    //     let data = {
+    //       fname: this.state.fname,
+    //       lname: this.state.lname,
+    //       mname: this.state.mname
+    //     };
+    
+    //     axiosPost(URL.getAllAuthClient, data, response => {
+    //       this.handleSuccessfullResponse(response);
+    //     });
+    // };
+    handleSubmit = async (e, values) => {
         e.preventDefault();
         let data = {
-          fname: this.state.fname,
-          lname: this.state.lname,
-          mname: this.state.mname
+            first_name: this.state.fname,
+            middle_name: this.state.mname,
+            last_name: this.state.lname,
+            username: "priansu_koirala",
+            gender: "female",
+            address: "Kalanki",
+            nationality: "hindu",
+            dob: "1996-09-09",
+            education: "BPH",
+            contact_number:"9874345667",
+            email: "koiralapriansu@gmail.com",
+            password: "priansu123!@#"
         };
     
-        axiosPost(URL.getAllAuthUsers, data, response => {
-          this.handleSuccessfulResponde(response);
-        });
+        try {
+            axiosPost(URL.getAllClients, data, (response) => {
+                if (response.data.success) {
+                  this.setState({
+                    first_name: "",
+                    middle_name: "",
+                    last_name: "",
+                    username: "",
+                    gender: "",
+                    address: "",
+                    nationality: "",
+                    dob: "",
+                    education: "",
+                    contact_number:"",
+                    email: "",
+                    password: ""
+                  });
+                    this.handleSuccessfullResponse(response);
+
+                } else {
+                  this.setState({
+                    submitSpinner: false,
+                  });
+                  swal("Error", response.message, "error");
+                  return false;
+                }
+              });
+        } catch (error) {
+            // Handle error
+            console.error('Error:', error);
+            displayErrorAlert(error);
+        }
     };
 
-    handleSuccessfulResponde = response => {
+    handleSuccessfullResponse = response => {
         if (response.data.success) {
             swal("Success", response.data.message, "success");
-            this.getCitites({});
-            this.setState({ modal: false });
         } else {
-            // swal("Error", response.data.message, "error");
             displayErrorAlert(response);
         }
     };
@@ -55,11 +102,11 @@ class Create extends Component {
             <h3>Create User <small>(Fill up the given form)</small></h3>
             <div className="mb-3">
                 <label className="form-label">First Name <span className="text-danger">*</span></label>
-                <input type="text" className="form-control" />
+                <input type="text" onChange={this.handleChange} className="form-control" />
                 <label className="form-label">Middle Name</label>
-                <input type="text" className="form-control" />
+                <input type="text" onChange={this.handleChange} className="form-control" />
                 <label className="form-label">Last Name <span className="text-danger">*</span></label>
-                <input type="text" className="form-control" />
+                <input type="text" onChange={this.handleChange} className="form-control" />
             </div>
             <label className="form-label">Gender: <span className="text-danger">*</span></label>
             <div className="form-check form-check-inline">
