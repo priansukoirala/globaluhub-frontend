@@ -28,15 +28,15 @@ class ClientList extends Component {
         <Table striped bordered>
           <thead>
             <tr className="table-head">
-              
               <th>Name</th>
-             
+              <th>Gender</th>
+              <th>Address</th>
+              <th>Email</th>
             </tr>
           </thead>
           <tbody>
             {
-            // this.props.clientList.length
-            3 <= 0 ? (
+            this.props.clientList.length <= 0 ? (
                 <tr>
                     <td>No records</td>
                 </tr>
@@ -47,8 +47,8 @@ class ClientList extends Component {
         </Table>
 
         <Pagination
-        //   itemsCount={this.props.clientList.length}
-          itemsCount='3'
+          itemsCount={this.props.clientList.length}
+          // itemsCount='3'
           pageSize={this.props.pageSize}
           currentPage={this.props.currentPage}
           onPageChange={this.props.handlePageChange}

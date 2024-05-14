@@ -9,6 +9,9 @@ class ClientRow extends Component {
       <tr key={client.id}>
         
         <td>{client.first_name} {client.middle_name} {client.first_name}</td>
+        <td>{client.gender}</td>
+        <td>{client.address}</td>
+        <td>{client.email}</td>
       </tr>
     );
   }
