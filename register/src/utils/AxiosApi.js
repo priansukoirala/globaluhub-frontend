@@ -18,7 +18,7 @@ export const axiosGet = (url, successCallback, failureCallback) => {
             localStorage.clear();
             // history.push(`${process.env.PUBLIC_URL}/`);
           }
-          swal("Erro", error.message, "error");
+          swal("Error", error.message, "error");
         }
     );
 };
@@ -59,49 +59,49 @@ export const axiosPost = (url, params, successCallback, failureCallback) => {
     );
 };
 
-export const axiosDelete = (url, successCallback, failureCallback) => {
-  axios
-    .delete(url, { headers })
-    .then(
-      successCallback ||
-        function (response) {
-          swal("Success", response.message, "success");
-        }
-    )
-    .catch(
-      failureCallback ||
-        function (error) {
-          let errorResponse = error.response ? error.response.data : error;
-          swal(
-            errorResponse.error || "Forbidden Deletion",
-            errorResponse.message,
-            "error"
-          );
-        }
-    );
-};
+// export const axiosDelete = (url, successCallback, failureCallback) => {
+//   axios
+//     .delete(url, { headers })
+//     .then(
+//       successCallback ||
+//         function (response) {
+//           swal("Success", response.message, "success");
+//         }
+//     )
+//     .catch(
+//       failureCallback ||
+//         function (error) {
+//           let errorResponse = error.response ? error.response.data : error;
+//           swal(
+//             errorResponse.error || "Forbidden Deletion",
+//             errorResponse.message,
+//             "error"
+//           );
+//         }
+//     );
+// };
 
-export const axiosPut = (url, params, successCallback, failureCallback) => {
-  axios
-    .put(url, params, { headers })
-    .then(
-      successCallback ||
-        function (response) {
-          swal("Success", response.message, "success");
-        }
-    )
-    .catch(
-      failureCallback ||
-        function (error) {
-          let errorResponse = error.response ? error.response.data : error;
-          swal(
-            errorResponse.error || "Update Forbidden",
-            errorResponse.message,
-            "error"
-          );
-        }
-    );
-};
+// export const axiosPut = (url, params, successCallback, failureCallback) => {
+//   axios
+//     .put(url, params, { headers })
+//     .then(
+//       successCallback ||
+//         function (response) {
+//           swal("Success", response.message, "success");
+//         }
+//     )
+//     .catch(
+//       failureCallback ||
+//         function (error) {
+//           let errorResponse = error.response ? error.response.data : error;
+//           swal(
+//             errorResponse.error || "Update Forbidden",
+//             errorResponse.message,
+//             "error"
+//           );
+//         }
+//     );
+// };
 
 const errorByStatusMessages = {
   400: "Bad Request",

@@ -32,15 +32,7 @@ export const displayErrorAlert = (response) => {
     "error"
   );
 };
-export const displayNoRecordAlert = () => {
-  swal("Error", "No Roles for this Department", "error");
-};
-export const displayInfoAlert = (messageHeader, message) => {
-  swal(messageHeader, message, "info");
-};
-export const displayWarningInfoAlert = (message) => {
-  swal("Warning", message, "warning");
-};
+
 
 export const displaySuccessAlert = (response, callback, param) => {
   swal("Success", response.data.message, "success").then(() => {
@@ -64,32 +56,6 @@ export const displayConfirmDeleteAlert = (params, handleDelete) => {
   });
 };
 
-export const displayConfirmDeleteSelectedAlert = (
-  getSelectedItems,
-  handleDeleteSelected
-) => {
-  swal({
-    title: "Are you sure?",
-    text: "Once deleted, you will not be able to recover this record!",
-    icon: "warning",
-    buttons: true,
-    dangerMode: true,
-  }).then((deleteConfirm) => {
-    if (deleteConfirm) {
-      let params = getSelectedItems();
-      handleDeleteSelected(params);
-    } else {
-      swal("Your record is safe!");
-    }
-  });
-};
-
-export const getStyleForModal = () => {
-  return {
-    minHeight: "2000px",
-    minWeight: "2000px",
-  };
-};
 
 export const handleError = (e) => {
   e.target.src = userImage;
