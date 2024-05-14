@@ -3,6 +3,7 @@ import ClientList from '../components/ClientList';
 import { axiosGet } from '../utils/AxiosApi';
 import { displayErrorAlert } from '../utils/Utils';
 import { URL } from '../utils/Constants';
+import axios from 'axios';
 class Home extends Component {
 
     state = {
@@ -13,6 +14,7 @@ class Home extends Component {
       currentPage: 1,
       pageSize: 7,
     };
+
     componentDidMount() {
       this.getAllClients();
     }
@@ -22,7 +24,6 @@ class Home extends Component {
         let list = response.data.data.data;
         this.setState({ clientList: list });
       },err => {
-        // alert(err.message);
         displayErrorAlert(err.response);
       }
       );
@@ -48,9 +49,39 @@ class Home extends Component {
         this.setState({ currentPage: nextPage });
       }
     };  
+
+    downloadFile = () => {
+        try {
+          const response = axios.get(URL.downloadClients, {
+            responseType: 'blob',
+          });
+          const blobUrl = window.URL.createObjectURL(new Blob([response.data]));
+    
+          const link = document.createElement('a');
+          link.href = blobUrl;
+          link.setAttribute('download', 'Clients.csv');
+    
+          document.body.appendChild(link);
+          link.click();
+    
+          document.body.removeChild(link);
+        } catch (error) {
+          console.error('Error downloading file:', error);
+        }
+      };
+    
     render() {
         return (
           <>
+            <div className='container'>
+              <div className='row'>
+                <div className='col-6'>
+                  <h3>List of Clients</h3>
+                </div>
+                <div className='col-6'>
+                  <button onClick={this.downloadFile} className='btn btn-primary'>Download File</button>
+                </div>
+              </div>
             <ClientList
               clientList={this.state.clientList}
               handlePageChange={this.handlePageChange}
@@ -59,6 +90,7 @@ class Home extends Component {
               currentPage={this.state.currentPage}
               pageSize={this.state.pageSize}
             />
+            </div>
           </>
         );
       }

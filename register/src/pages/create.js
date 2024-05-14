@@ -57,7 +57,7 @@ class Create extends Component {
                 if (response.data.success) {
                     this.handleSuccessfullResponse(response);
                 } else {    
-                    swal("Error", response.message, "error");
+                    swal("Error", response.data.message, "error");
                     return false;
                 }
               });
@@ -135,7 +135,7 @@ class Create extends Component {
                         </select>
                     </div>
                     <div className="col-4">
-                        <label className="form-label">Education <span className="text-danger">*</span></label>
+                        <label className="form-label">Educational Background<span className="text-danger">*</span></label>
                         <input type="text" name="education" onChange={this.handleChange} className="form-control" />
                     </div>
                 </div>
