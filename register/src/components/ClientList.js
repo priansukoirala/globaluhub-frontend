@@ -32,6 +32,7 @@ class ClientList extends Component {
               <th>Gender</th>
               <th>Address</th>
               <th>Email</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>

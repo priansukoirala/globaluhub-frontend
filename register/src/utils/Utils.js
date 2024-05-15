@@ -22,6 +22,7 @@ export const wildcardFilterObjectArray = (str, array) =>
  * @description Displays an error alert box. Built specifically for displaying http error message.
  */
 export const displayErrorAlert = (response) => {
+  console.log(response);
   swal(
     "Error",
     response

@@ -4,6 +4,7 @@ import { axiosGet } from '../utils/AxiosApi';
 import { displayErrorAlert } from '../utils/Utils';
 import { URL } from '../utils/Constants';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 class Home extends Component {
 
     state = {
@@ -74,11 +75,17 @@ class Home extends Component {
         return (
           <>
             <div className='container'>
-              <div className='row'>
+              <div className='row mt-5 mb-5'>
                 <div className='col-6'>
                   <h3>List of Clients</h3>
                 </div>
-                <div className='col-6'>
+
+                <div className='col-3'>
+                </div>
+                
+                <div className='col-3'>
+                  <Link className="btn btn-success" to="/create">Create Client</Link>
+                  &nbsp;
                   <button onClick={this.downloadFile} className='btn btn-primary'>Download File</button>
                 </div>
               </div>

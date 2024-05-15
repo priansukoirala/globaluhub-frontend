@@ -13,6 +13,7 @@ export const URL = {
 
   // Unauthenticated Users
   getAllClients: `${location}/api/clients`,
+  getSingleClients: `${location}/api/clients`,
   downloadClients: `${location}/api/clients/download-file/clients.csv`,
 };
 

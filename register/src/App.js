@@ -18,7 +18,7 @@ function App() {
               <Link className="nav-link active" aria-current="page" to="/">Home</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/create">Create User</Link>
+              <Link className="nav-link" to="/create">Create Client</Link>
             </li>
             
           </ul>
