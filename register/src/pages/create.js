@@ -80,10 +80,10 @@ class Create extends Component {
     render() {
         return (
         <>
-        
+    
             <div className="container mt-3">
                 <h3>Create Client <small>(Fill up the given form)</small></h3>
-                <div className="row mb-3">
+                <div className="row mb-3 mt-4">
                     <div className="col-4">
                         <label className="form-label">First Name <span className="text-danger">*</span></label>
                         <input type="text" name="fname" onChange={this.handleChange} className="form-control" placeholder="Eg. Harit" />
