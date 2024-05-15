@@ -18,11 +18,11 @@ class ClientRow extends Component {
       formData: param.requestData,
       modelOpen: !this.state.modelOpen,
     });
-    this.getOriginalData(param.id);
+    this.getOriginalData(param.username);
   };
 
-  getOriginalData = (id) => {
-    axiosGet(URL.getSingleClients + `/${id}`, (res) => {
+  getOriginalData = (username) => {
+    axiosGet(URL.getSingleClients + `/${username}`, (res) => {
       if (res.data.success) {
         this.setState({
           originalData: res.data.data?.item,
@@ -37,7 +37,7 @@ class ClientRow extends Component {
       <>
       <tr key={client.id}>
         
-        <td>{client.first_name} {client.middle_name} {client.first_name}</td>
+        <td>{client.first_name} {client.middle_name} {client.last_name}</td>
         <td>{client.gender}</td>
         <td>{client.address}</td>
         <td>{client.email}</td>
