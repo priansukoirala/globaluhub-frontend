@@ -37,7 +37,7 @@ class ClientRow extends Component {
       <>
       <tr key={client.id}>
         
-        <td>{client.first_name} {client.middle_name} {client.last_name}</td>
+        <td>{client.first_name} {client.middle_name == 'null' ? '' : client.middle_name} {client.last_name}</td>
         <td>{client.gender}</td>
         <td>{client.address}</td>
         <td>{client.email}</td>
@@ -50,6 +50,7 @@ class ClientRow extends Component {
       modal={this.state.modelOpen}
       toggleModal={this.toggleModal}
       className="xl-modal"
+      size="xl"
       contentClassName="xl-modal-content"
       modalHeader="View Client Details"
       modalBody={

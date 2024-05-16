@@ -1,7 +1,7 @@
 import { Component } from "react";
 import { axiosPost } from "../utils/AxiosApi";
 import { URL } from "../utils/Constants";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import { displayErrorAlert } from "../utils/Utils";
 import swal from "sweetalert";
 
@@ -36,13 +36,14 @@ class Create extends Component {
         const name = target.name;
         this.setState({ [name]: value });
     };
-    
+
     handleSubmit = async (e, values) => {
         e.preventDefault();
         let data = {
             first_name: this.state.fname,
-            middle_name: this.state.mname,
+            middle_name: this.state.mname == '' ? 'null' : this.state.mname,
             last_name: this.state.lname,
+            username:'',
             gender: this.state.gender,
             address: this.state.address,
             nationality: this.state.nationality,
@@ -52,7 +53,7 @@ class Create extends Component {
             email: this.state.email,
             preferred_contact: this.state.preferred_contact,
         };
-        console.log(data);
+
         try {
             axiosPost(URL.getAllClients, data, (response) => {
                 if (response.data.success) {
@@ -74,7 +75,6 @@ class Create extends Component {
         } else {
             displayErrorAlert(response);
         }
-        // useNavigate('/home');
     };
     
     render() {
@@ -86,7 +86,7 @@ class Create extends Component {
                 <div className="row mb-3 mt-4">
                     <div className="col-4">
                         <label className="form-label">First Name <span className="text-danger">*</span></label>
-                        <input type="text" name="fname" onChange={this.handleChange} className="form-control" placeholder="Eg. Harit" />
+                        <input type="text" name="fname" onChange={this.handleChange} value={this.fname} className="form-control" placeholder="Eg. Harit" />
                     </div>
                     <div className="col-4">
                         <label className="form-label">Middle Name</label>
